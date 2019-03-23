@@ -1,0 +1,6 @@
+[iosevka-cc-ttf]
+variant = "cc"
+number = "04"
+description = """
+Some of the symbols are en-widen to maintain compatibility with CJK
+typefaces. Ligatures are included."""
