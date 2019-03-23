@@ -1,5 +1,12 @@
+[iosevka-ttf]
+variant = ""
+name = "Default"
+number = "01"
+description = """
+The default variant with ligatures and semantic full-width glyphs."""
+
 [iosevka-term-ttf]
-variant = "term"
+variant = "-term"
 name = "Terminal"
 number = "02"
 description = """
@@ -8,7 +15,7 @@ environments cannot interpret Iosevka as monospaced, and have difficulties
 with ligatures included, you can use Iosevka Term as an alternative."""
 
 [iosevka-cc-ttf]
-variant = "cc"
+variant = "-cc"
 name = "CC"
 number = "04"
 description = """
