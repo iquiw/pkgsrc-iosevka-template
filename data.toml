@@ -14,6 +14,13 @@ Exact monospaced font without ligatures and full-width glyphs. Since some
 environments cannot interpret Iosevka as monospaced, and have difficulties
 with ligatures included, you can use Iosevka Term as an alternative."""
 
+[iosevka-type-ttf]
+variant = "-type"
+name = "Typesetting"
+number = "03"
+description = """
+Similar to Default, but more mathematical symbols are wider."""
+
 [iosevka-cc-ttf]
 variant = "-cc"
 name = "CC"
