@@ -1,5 +1,15 @@
+[iosevka-term-ttf]
+variant = "term"
+name = "Terminal"
+number = "02"
+description = """
+Exact monospaced font without ligatures and full-width glyphs. Since some
+environments cannot interpret Iosevka as monospaced, and have difficulties
+with ligatures included, you can use Iosevka Term as an alternative."""
+
 [iosevka-cc-ttf]
 variant = "cc"
+name = "CC"
 number = "04"
 description = """
 Some of the symbols are en-widen to maintain compatibility with CJK

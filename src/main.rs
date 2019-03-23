@@ -1,16 +1,17 @@
 use std::collections::HashMap;
 use std::error::Error;
-use std::fs::File;
+use std::fs::{self, File};
 use std::io::Read;
 use std::path::PathBuf;
 
-use handlebars::{handlebars_helper, Handlebars};
+use handlebars::Handlebars;
 use serde::{Deserialize, Serialize};
 use toml;
 
 #[derive(Debug, Deserialize, Serialize)]
 struct Variant {
     variant: String,
+    name: String,
     number: String,
     description: String,
 }
@@ -23,12 +24,9 @@ macro_rules! regfile {
     };
 }
 
-handlebars_helper!(upper: |s: str| s.to_uppercase());
-
 fn main() -> Result<(), Box<Error>> {
     let data = read_data()?;
     let mut reg = Handlebars::new();
-    reg.register_helper("upper", Box::new(upper));
 
     let files = &["Makefile", "DESCR", "PLIST"];
 
@@ -40,8 +38,10 @@ fn main() -> Result<(), Box<Error>> {
         for file in files {
             let mut path = PathBuf::from("..");
             path.push(key);
+            if !path.is_dir() {
+                fs::create_dir(&path)?;
+            }
             path.push(file);
-            println!("Rendering {}", path.display());
             let output = File::create(&path)?;
             reg.render_to_write(file, val, output)?;
             println!("Rendered {}", path.display());
