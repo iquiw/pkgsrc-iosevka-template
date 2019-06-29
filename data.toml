@@ -28,3 +28,42 @@ number = "04"
 description = """
 Some of the symbols are en-widen to maintain compatibility with CJK
 typefaces. Ligatures are included."""
+
+[iosevka-slab-ttf]
+variant = "-slab"
+name = "Slab"
+number = "05"
+description = """
+The default variant with ligatures and semantic full-width glyphs.
+
+The font is slab-serif."""
+
+[iosevka-term-slab-ttf]
+variant = "-term-slab"
+name = "Terminal Slab"
+number = "06"
+description = """
+Exact monospaced font without ligatures and full-width glyphs. Since some
+environments cannot interpret Iosevka as monospaced, and have difficulties
+with ligatures included, you can use Iosevka Term as an alternative.
+
+The font is slab-serif."""
+
+[iosevka-type-slab-ttf]
+variant = "-type-slab"
+name = "Typesetting Slab"
+number = "07"
+description = """
+Similar to Default, but more mathematical symbols are wider.
+
+The font is slab-serif."""
+
+[iosevka-cc-slab-ttf]
+variant = "-cc-slab"
+name = "CC Slab"
+number = "08"
+description = """
+Some of the symbols are en-widen to maintain compatibility with CJK
+typefaces. Ligatures are included.
+
+The font is slab-serif."""
