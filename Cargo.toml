@@ -5,6 +5,6 @@ authors = ["Iku Iwasa <iku.iwasa@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-handlebars = "^1.1.0"
-toml = "^0.5.0"
-serde = { version = "^1.0.89", features = ["derive"] }
+handlebars = "^2.0.1"
+toml = "^0.5.3"
+serde = { version = "^1.0.99", features = ["derive"] }
