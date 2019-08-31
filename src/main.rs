@@ -24,7 +24,7 @@ macro_rules! regfile {
     };
 }
 
-fn main() -> Result<(), Box<Error>> {
+fn main() -> Result<(), Box<dyn Error>> {
     let data = read_data()?;
     let mut reg = Handlebars::new();
 
@@ -50,7 +50,7 @@ fn main() -> Result<(), Box<Error>> {
     Ok(())
 }
 
-fn read_data() -> Result<HashMap<String, Variant>, Box<Error>> {
+fn read_data() -> Result<HashMap<String, Variant>, Box<dyn Error>> {
     let mut f = File::open("data.toml")?;
     let mut s = String::new();
 
