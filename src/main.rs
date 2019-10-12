@@ -26,7 +26,7 @@ macro_rules! regfile {
 }
 
 fn usage() {
-    eprintln!("usage: iosevka-template (render|make)");
+    eprintln!("usage: iosevka-template (make|pkglint|render)");
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -35,6 +35,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     if let Some(cmd) = args.nth(1) {
         match cmd.as_ref() {
             "make" => make(&args.collect()),
+            "pkglint" => pkglint(),
             "render" => render(),
             _ => Ok(usage()),
         }
@@ -52,6 +53,18 @@ fn make(args: &Vec<String>) -> Result<(), Box<dyn Error>> {
         let path_dir = get_package_dir(&key)?;
         let exit = cmd.current_dir(&path_dir).spawn()?.wait()?;
         println!("{}: {} exited with {}", key, cmd_str, exit);
+    }
+    Ok(())
+}
+
+fn pkglint() -> Result<(), Box<dyn Error>> {
+    let data = read_data()?;
+    let mut cmd = Command::new("pkglint");
+    cmd.arg("-Call").arg("-Wall");
+    for (key, _) in data.iter() {
+        let path_dir = get_package_dir(&key)?;
+        eprint!("{}: ", key);
+        let _ = cmd.current_dir(&path_dir).spawn()?.wait()?;
     }
     Ok(())
 }
