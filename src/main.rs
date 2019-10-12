@@ -26,7 +26,7 @@ macro_rules! regfile {
 }
 
 fn usage() {
-    eprintln!("usage: iosevka-template (render|makesum)");
+    eprintln!("usage: iosevka-template (render|make)");
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -34,7 +34,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     if let Some(cmd) = args.nth(1) {
         match cmd.as_ref() {
-            "makesum" => makesum(),
+            "make" => make(&args.collect()),
             "render" => render(),
             _ => Ok(usage()),
         }
@@ -43,16 +43,15 @@ fn main() -> Result<(), Box<dyn Error>> {
     }
 }
 
-fn makesum() -> Result<(), Box<dyn Error>> {
+fn make(args: &Vec<String>) -> Result<(), Box<dyn Error>> {
     let data = read_data()?;
+    let mut cmd = Command::new("make");
+    let cmd_str = format!("make {}", &args.join(" "));
+    cmd.args(args);
     for (key, _) in data.iter() {
         let path_dir = get_package_dir(&key)?;
-        let mut cmd = Command::new("make")
-            .arg("makesum")
-            .current_dir(&path_dir)
-            .spawn()?;
-        let exit = cmd.wait()?;
-        println!("{}: makesum exited with {}", key, exit);
+        let exit = cmd.current_dir(&path_dir).spawn()?.wait()?;
+        println!("{}: {} exited with {}", key, cmd_str, exit);
     }
     Ok(())
 }
