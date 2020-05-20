@@ -1,69 +1,23 @@
 [iosevka-ttf]
 variant = ""
 name = "Default"
-number = "01"
 description = """
-The default variant with ligatures and semantic full-width glyphs."""
-
-[iosevka-term-ttf]
-variant = "-term"
-name = "Terminal"
-number = "02"
-description = """
-Exact monospaced font without ligatures and full-width glyphs. Since some
-environments cannot interpret Iosevka as monospaced, and have difficulties
-with ligatures included, you can use Iosevka Term as an alternative."""
-
-[iosevka-type-ttf]
-variant = "-type"
-name = "Typesetting"
-number = "03"
-description = """
-Similar to Default, but more mathematical symbols are wider."""
-
-[iosevka-cc-ttf]
-variant = "-cc"
-name = "CC"
-number = "04"
-description = """
-Some of the symbols are en-widen to maintain compatibility with CJK
-typefaces. Ligatures are included."""
+Monospace, Default fonts."""
 
 [iosevka-slab-ttf]
 variant = "-slab"
 name = "Slab"
-number = "05"
 description = """
-The default variant with ligatures and semantic full-width glyphs.
+Monospace, Slab fonts."""
 
-The font is slab-serif."""
-
-[iosevka-term-slab-ttf]
-variant = "-term-slab"
-name = "Terminal Slab"
-number = "06"
+[iosevka-curly-ttf]
+variant = "-curly"
+name = "Curly"
 description = """
-Exact monospaced font without ligatures and full-width glyphs. Since some
-environments cannot interpret Iosevka as monospaced, and have difficulties
-with ligatures included, you can use Iosevka Term as an alternative.
+Monospace, Curly fonts."""
 
-The font is slab-serif."""
-
-[iosevka-type-slab-ttf]
-variant = "-type-slab"
-name = "Typesetting Slab"
-number = "07"
+[iosevka-curly-slab-ttf]
+variant = "-curly-slab"
+name = "Curly Slab"
 description = """
-Similar to Default, but more mathematical symbols are wider.
-
-The font is slab-serif."""
-
-[iosevka-cc-slab-ttf]
-variant = "-cc-slab"
-name = "CC Slab"
-number = "08"
-description = """
-Some of the symbols are en-widen to maintain compatibility with CJK
-typefaces. Ligatures are included.
-
-The font is slab-serif."""
+Monospace, Curly Slab fonts."""

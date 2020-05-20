@@ -13,7 +13,6 @@ use toml;
 struct Variant {
     variant: String,
     name: String,
-    number: String,
     description: String,
 }
 
