@@ -7,7 +7,6 @@ use std::process::Command;
 
 use handlebars::Handlebars;
 use serde::{Deserialize, Serialize};
-use toml;
 
 #[derive(Debug, Deserialize, Serialize)]
 struct Variant {
@@ -33,20 +32,24 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     if let Some(cmd) = args.nth(1) {
         match cmd.as_ref() {
-            "make" => make(&args.collect()),
+            "make" => make(args.collect()),
             "pkglint" => pkglint(),
             "render" => render(),
-            _ => Ok(usage()),
+            _ => {
+                usage();
+                Ok(())
+            }
         }
     } else {
-        Ok(usage())
+        usage();
+        Ok(())
     }
 }
 
-fn make(args: &Vec<String>) -> Result<(), Box<dyn Error>> {
+fn make(args: Vec<String>) -> Result<(), Box<dyn Error>> {
     let data = read_data()?;
     let mut cmd = Command::new("make");
-    let cmd_str = format!("make {}", &args.join(" "));
+    let cmd_str = format!("make {}", args.join(" "));
     cmd.args(args);
     for (key, _) in data.iter() {
         let path_dir = get_package_dir(&key)?;
