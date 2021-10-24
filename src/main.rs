@@ -52,7 +52,7 @@ fn make(args: Vec<String>) -> Result<(), Box<dyn Error>> {
     let cmd_str = format!("make {}", args.join(" "));
     cmd.args(args);
     for (key, _) in data.iter() {
-        let path_dir = get_package_dir(&key)?;
+        let path_dir = get_package_dir(key)?;
         let exit = cmd.current_dir(&path_dir).spawn()?.wait()?;
         println!("{}: {} exited with {}", key, cmd_str, exit);
     }
@@ -64,7 +64,7 @@ fn pkglint() -> Result<(), Box<dyn Error>> {
     let mut cmd = Command::new("pkglint");
     cmd.arg("-Call").arg("-Wall");
     for (key, _) in data.iter() {
-        let path_dir = get_package_dir(&key)?;
+        let path_dir = get_package_dir(key)?;
         eprint!("{}: ", key);
         let _ = cmd.current_dir(&path_dir).spawn()?.wait()?;
     }
@@ -82,7 +82,7 @@ fn render() -> Result<(), Box<dyn Error>> {
     }
 
     for (key, val) in data.iter() {
-        let path_dir = get_package_dir(&key)?;
+        let path_dir = get_package_dir(key)?;
         for file in files {
             let mut path = path_dir.clone();
             path.push(file);
