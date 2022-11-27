@@ -4,11 +4,17 @@ name = "Default"
 description = """
 Monospace, Default fonts."""
 
-[iosevka-slab-ttf]
-variant = "-slab"
-name = "Slab"
+[iosevka-aile-ttf]
+variant = "-aile"
+name = "Aile"
 description = """
-Monospace, Slab fonts."""
+Quasi-proportional, Sans-serif fonts."""
+
+[iosevka-etoile-ttf]
+variant = "-etoile"
+name = "Etoile"
+description = """
+Quasi-proportional, Slab-serif fonts."""
 
 [iosevka-curly-ttf]
 variant = "-curly"
@@ -21,3 +27,9 @@ variant = "-curly-slab"
 name = "Curly Slab"
 description = """
 Monospace, Curly Slab fonts."""
+
+[iosevka-slab-ttf]
+variant = "-slab"
+name = "Slab"
+description = """
+Monospace, Slab fonts."""
