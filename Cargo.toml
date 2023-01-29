@@ -6,5 +6,5 @@ edition = "2021"
 
 [dependencies]
 handlebars = "4.1.0"
-toml = "0.5.8"
+toml = "0.7.0"
 serde = { version = "1.0.126", features = ["derive"] }
