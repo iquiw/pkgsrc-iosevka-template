@@ -5,6 +5,6 @@ authors = ["Iku Iwasa <iku.iwasa@gmail.com>"]
 edition = "2021"
 
 [dependencies]
-handlebars = "4.1.0"
+handlebars = { version = "4.1.0", features = ["string_helpers"] }
 toml = "0.7.0"
 serde = { version = "1.0.126", features = ["derive"] }
