@@ -9,10 +9,18 @@ use handlebars::Handlebars;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
+struct FontData {
+    version: String,
+    #[serde(flatten)]
+    variants: HashMap<String, Variant>,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
 struct Variant {
     variant: String,
     name: String,
     description: String,
+    version: Option<String>,
 }
 
 macro_rules! regfile {
@@ -51,7 +59,7 @@ fn make(args: Vec<String>) -> Result<(), Box<dyn Error>> {
     let mut cmd = Command::new("make");
     let cmd_str = format!("make {}", args.join(" "));
     cmd.args(args);
-    for (key, _) in data.iter() {
+    for (key, _) in data.variants.iter() {
         let path_dir = get_package_dir(key)?;
         let exit = cmd.current_dir(&path_dir).spawn()?.wait()?;
         println!("{}: {} exited with {}", key, cmd_str, exit);
@@ -63,7 +71,7 @@ fn pkglint() -> Result<(), Box<dyn Error>> {
     let data = read_data()?;
     let mut cmd = Command::new("pkglint");
     cmd.arg("-Call").arg("-Wall");
-    for (key, _) in data.iter() {
+    for (key, _) in data.variants.iter() {
         let path_dir = get_package_dir(key)?;
         eprint!("{}: ", key);
         let _ = cmd.current_dir(&path_dir).spawn()?.wait()?;
@@ -72,19 +80,20 @@ fn pkglint() -> Result<(), Box<dyn Error>> {
 }
 
 fn render() -> Result<(), Box<dyn Error>> {
-    let data = read_data()?;
+    let mut data = read_data()?;
     let mut reg = Handlebars::new();
 
-    let files = &["Makefile", "DESCR", "PLIST"];
+    let files = &["Makefile", "DESCR", "PLIST", "COMMIT_MSG"];
 
     for file in files {
         regfile!(reg, file);
     }
 
-    for (key, val) in data.iter() {
+    for (key, val) in data.variants.iter_mut() {
         let path_dir = get_package_dir(key)?;
         for file in files {
             let mut path = path_dir.clone();
+            val.version = Some(data.version.clone());
             path.push(file);
             let output = File::create(&path)?;
             reg.render_to_write(file, val, output)?;
@@ -94,7 +103,7 @@ fn render() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn read_data() -> Result<HashMap<String, Variant>, Box<dyn Error>> {
+fn read_data() -> Result<FontData, Box<dyn Error>> {
     let mut f = File::open("data.toml")?;
     let mut s = String::new();
 

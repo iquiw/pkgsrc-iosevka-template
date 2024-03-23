@@ -1,3 +1,5 @@
+version = "29.0.2"
+
 [iosevka-ttf]
 variant = ""
 name = "Default"

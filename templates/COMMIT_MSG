@@ -1,0 +1,3 @@
+fonts/iosevka{{#if variant}}-{{/if}}{{kebabCase variant}}: import Iosevka{{#if variant}} {{/if}}{{ variant }} version {{ version }}
+
+Packaged in wip by iquiw
