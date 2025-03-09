@@ -1,11 +1,12 @@
 # $NetBSD$
 
-PKGNAME=	iosevka{{#if variant}}-{{/if}}{{kebabCase variant}}-ttf-{{ version }}
 DISTNAME=	SuperTTC-Iosevka{{variant}}-${PKGVERSION_NOREV}
+PKGNAME=	iosevka{{#if variant}}-{{/if}}{{kebabCase variant}}-ttf-{{ version }}
 CATEGORIES=	fonts
 MASTER_SITES=	${MASTER_SITE_GITHUB:=be5invis/}
 GITHUB_PROJECT=	Iosevka
 GITHUB_RELEASE=	v${PKGVERSION_NOREV}
+EXTRACT_SUFX=	.zip
 
 MAINTAINER=	iquiw@NetBSD.org
 HOMEPAGE=	https://github.com/be5invis/Iosevka
@@ -13,7 +14,6 @@ COMMENT=	Slender typeface for code, from code
 LICENSE=	ofl-v1.1
 
 EXTRACT_DIR=	${WRKSRC}
-EXTRACT_SUFX=	.zip
 
 NO_BUILD=	yes
 USE_LANGUAGES=	# none
