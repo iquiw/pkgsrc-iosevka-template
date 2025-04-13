@@ -2,7 +2,7 @@
 name = "iosevka-template"
 version = "0.2.0"
 authors = ["Iku Iwasa <iku.iwasa@gmail.com>"]
-edition = "2021"
+edition = "2024"
 
 [dependencies]
 handlebars = { version = "6.0.0", features = ["string_helpers"] }
